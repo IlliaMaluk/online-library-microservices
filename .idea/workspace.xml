@@ -5,40 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b4438f15-76d9-4d52-9526-252d8abca74b" name="Changes" comment="first commit">
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api-gateway/.env" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api-gateway/.prettierrc" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/.prettierrc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api-gateway/dist/app.module.js" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/dist/app.module.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api-gateway/dist/app.module.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/dist/app.module.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api-gateway/dist/tsconfig.build.tsbuildinfo" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/dist/tsconfig.build.tsbuildinfo" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api-gateway/src/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/src/app.module.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api-gateway/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/src/main.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/book-service/.env" beforeDir="false" afterPath="$PROJECT_DIR$/book-service/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/book-service/.prettierrc" beforeDir="false" afterPath="$PROJECT_DIR$/book-service/.prettierrc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/book-service/dist/app.module.js" beforeDir="false" afterPath="$PROJECT_DIR$/book-service/dist/app.module.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/book-service/dist/app.module.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/book-service/dist/app.module.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/book-service/dist/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/book-service/dist/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/book-service/dist/main.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/book-service/dist/main.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/book-service/dist/tsconfig.build.tsbuildinfo" beforeDir="false" afterPath="$PROJECT_DIR$/book-service/dist/tsconfig.build.tsbuildinfo" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/book-service/src/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/book-service/src/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/book-service/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/book-service/src/main.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/.env" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/.prettierrc" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/.prettierrc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/dist/app.module.js" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/dist/app.module.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/dist/app.module.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/dist/app.module.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/dist/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/dist/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/dist/main.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/dist/main.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/dist/tsconfig.build.tsbuildinfo" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/dist/tsconfig.build.tsbuildinfo" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/eslint.config.mjs" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/eslint.config.mjs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/node_modules/.package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/node_modules/.package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user-service/src/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/user/user.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/user/user.service.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -129,7 +100,10 @@
       <workItem from="1743408185243" duration="341000" />
       <workItem from="1743408541783" duration="80000" />
       <workItem from="1743408635943" duration="2079000" />
-      <workItem from="1743410842046" duration="1587000" />
+      <workItem from="1743410842046" duration="5078000" />
+      <workItem from="1743416212919" duration="26000" />
+      <workItem from="1743416247154" duration="21000" />
+      <workItem from="1743416269799" duration="1047000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <option name="closed" value="true" />
