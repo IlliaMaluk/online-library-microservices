@@ -7,7 +7,7 @@ async function bootstrap() {
     const app = await core_1.NestFactory.createMicroservice(app_module_1.AppModule, {
         transport: microservices_1.Transport.RMQ,
         options: {
-            urls: ['amqp://localhost:5672'],
+            urls: [process.env.RABBITMQ_URL || 'amqp://rabbitmq:5672'],
             queue: 'book-service',
             queueOptions: { durable: false },
         },

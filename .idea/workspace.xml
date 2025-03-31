@@ -4,14 +4,49 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b4438f15-76d9-4d52-9526-252d8abca74b" name="Changes" comment="first commit" />
+    <list default="true" id="b4438f15-76d9-4d52-9526-252d8abca74b" name="Changes" comment="first commit">
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-gateway/.env" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-gateway/.prettierrc" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/.prettierrc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-gateway/dist/app.module.js" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/dist/app.module.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-gateway/dist/app.module.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/dist/app.module.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-gateway/dist/tsconfig.build.tsbuildinfo" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/dist/tsconfig.build.tsbuildinfo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-gateway/src/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/src/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-gateway/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/src/main.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/book-service/.env" beforeDir="false" afterPath="$PROJECT_DIR$/book-service/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/book-service/.prettierrc" beforeDir="false" afterPath="$PROJECT_DIR$/book-service/.prettierrc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/book-service/dist/app.module.js" beforeDir="false" afterPath="$PROJECT_DIR$/book-service/dist/app.module.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/book-service/dist/app.module.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/book-service/dist/app.module.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/book-service/dist/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/book-service/dist/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/book-service/dist/main.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/book-service/dist/main.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/book-service/dist/tsconfig.build.tsbuildinfo" beforeDir="false" afterPath="$PROJECT_DIR$/book-service/dist/tsconfig.build.tsbuildinfo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/book-service/src/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/book-service/src/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/book-service/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/book-service/src/main.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/.env" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/.prettierrc" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/.prettierrc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/dist/app.module.js" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/dist/app.module.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/dist/app.module.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/dist/app.module.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/dist/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/dist/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/dist/main.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/dist/main.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/dist/tsconfig.build.tsbuildinfo" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/dist/tsconfig.build.tsbuildinfo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/eslint.config.mjs" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/eslint.config.mjs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/node_modules/.package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/node_modules/.package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/user/user.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/user/user.service.ts" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/book-service" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="ROOT_SYNC" value="SYNC" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -35,27 +70,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/Ilya/WebstormProjects/online-library-microservices",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
-    "ts.external.directory.path": "C:\\Users\\Ilya\\WebstormProjects\\online-library-microservices\\api-gateway\\node_modules\\typescript\\lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Ilya/WebstormProjects/online-library-microservices&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;C:\\Users\\Ilya\\WebstormProjects\\online-library-microservices\\api-gateway\\node_modules\\prettier&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\Ilya\\WebstormProjects\\online-library-microservices\\api-gateway\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "postgresql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;postgresql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Ilya\WebstormProjects\online-library-microservices\book-service" />
@@ -84,7 +121,15 @@
       <workItem from="1743366656702" duration="1026000" />
       <workItem from="1743368241762" duration="365000" />
       <workItem from="1743368623314" duration="929000" />
-      <workItem from="1743369575827" duration="1237000" />
+      <workItem from="1743369575827" duration="7034000" />
+      <workItem from="1743407178321" duration="293000" />
+      <workItem from="1743407492220" duration="230000" />
+      <workItem from="1743407736380" duration="294000" />
+      <workItem from="1743408047520" duration="128000" />
+      <workItem from="1743408185243" duration="341000" />
+      <workItem from="1743408541783" duration="80000" />
+      <workItem from="1743408635943" duration="2079000" />
+      <workItem from="1743410842046" duration="1587000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <option name="closed" value="true" />
@@ -110,7 +155,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <ignored-roots>
-      <path value="$PROJECT_DIR$" />
+      <path value="$PROJECT_DIR$/book-service" />
     </ignored-roots>
     <MESSAGE value="first commit" />
     <option name="LAST_COMMIT_MESSAGE" value="first commit" />

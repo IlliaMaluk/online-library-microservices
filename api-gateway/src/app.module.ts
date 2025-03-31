@@ -15,7 +15,7 @@ import { BooksController } from './books/books.controller';
         name: 'USER_SERVICE',
         transport: Transport.RMQ,
         options: {
-          urls: ['amqp://localhost:5672'],
+          urls: [process.env.RABBITMQ_URL || 'amqp://rabbitmq:5672'],
           queue: 'user-service',
           queueOptions: { durable: false },
         },
@@ -24,7 +24,7 @@ import { BooksController } from './books/books.controller';
         name: 'BOOK_SERVICE',
         transport: Transport.RMQ,
         options: {
-          urls: ['amqp://localhost:5672'],
+          urls: [process.env.RABBITMQ_URL || 'amqp://rabbitmq:5672'],
           queue: 'book-service',
           queueOptions: { durable: false },
         },

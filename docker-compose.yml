@@ -1,6 +1,23 @@
 version: '3.8'
 
 services:
+  postgres:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_DB: ebook_platform
+    ports:
+      - "5432:5432"
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    restart: always
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+
   api-gateway:
     build:
       context: ./api-gateway
@@ -8,13 +25,12 @@ services:
     ports:
       - "3000:3000"
     environment:
-      NODE_ENV: development
       DB_HOST: postgres
       DB_PORT: 5432
       DB_USER: postgres
-      DB_PASSWORD: postgres
+      DB_PASSWORD: 1234
       DB_NAME: ebook_platform
-      RABBITMQ_URL: amqp://localhost:5672
+      RABBITMQ_URL: amqp://rabbitmq:5672
     depends_on:
       - postgres
       - rabbitmq
@@ -24,13 +40,12 @@ services:
       context: ./user-service
       dockerfile: Dockerfile
     environment:
-      NODE_ENV: development
       DB_HOST: postgres
       DB_PORT: 5432
       DB_USER: postgres
-      DB_PASSWORD: postgres
+      DB_PASSWORD: 1234
       DB_NAME: ebook_platform
-      RABBITMQ_URL: amqp://localhost:5672
+      RABBITMQ_URL: amqp://rabbitmq:5672
     depends_on:
       - postgres
       - rabbitmq
@@ -44,32 +59,9 @@ services:
       DB_HOST: postgres
       DB_PORT: 5432
       DB_USER: postgres
-      DB_PASSWORD: postgres
+      DB_PASSWORD: 1234
       DB_NAME: ebook_platform
-      RABBITMQ_URL: amqp://localhost:5672
+      RABBITMQ_URL: amqp://rabbitmq:5672
     depends_on:
       - postgres
       - rabbitmq
-
-  postgres:
-    image: postgres:15
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: ebook_platform
-    ports:
-      - "5432:5432"
-    volumes:
-      - pg_data:/var/lib/postgresql/data
-
-  rabbitmq:
-    image: rabbitmq:3-management
-    ports:
-      - "5672:5672"
-      - "15672:15672"
-    environment:
-      RABBITMQ_DEFAULT_USER: guest
-      RABBITMQ_DEFAULT_PASS: guest
-
-volumes:
-  pg_data:
