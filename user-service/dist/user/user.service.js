@@ -14,10 +14,11 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserService = void 0;
 const common_1 = require("@nestjs/common");
+const microservices_1 = require("@nestjs/microservices");
 const typeorm_1 = require("@nestjs/typeorm");
 const typeorm_2 = require("typeorm");
 const user_entity_1 = require("./user.entity");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 let UserService = class UserService {
     userRepository;
@@ -25,6 +26,10 @@ let UserService = class UserService {
         this.userRepository = userRepository;
     }
     async createUser(data) {
+        const existingUser = await this.userRepository.findOne({ where: { username: data.username } });
+        if (existingUser) {
+            throw new microservices_1.RpcException({ statusCode: 400 });
+        }
         const hashedPassword = await bcrypt.hash(data.password, 10);
         const user = this.userRepository.create({
             username: data.username,
@@ -36,11 +41,11 @@ let UserService = class UserService {
     async loginUser(data) {
         const user = await this.userRepository.findOne({ where: { username: data.username } });
         if (!user) {
-            throw new common_1.UnauthorizedException('Invalid credentials');
+            throw new microservices_1.RpcException({ statusCode: 401 });
         }
         const passwordValid = await bcrypt.compare(data.password, user.password);
         if (!passwordValid) {
-            throw new common_1.UnauthorizedException('Invalid credentials');
+            throw new microservices_1.RpcException({ statusCode: 401 });
         }
         const payload = { username: user.username, sub: user.id, role: user.role };
         const token = jwt.sign(payload, 'secretKey', { expiresIn: '1h' });
@@ -49,13 +54,13 @@ let UserService = class UserService {
     async validateToken(token) {
         try {
             const decoded = jwt.verify(token, 'secretKey');
-            const user = await this.userRepository.findOne({ where: { username: decoded['username'] } });
+            const user = await this.userRepository.findOne({ where: { username: decoded.username } });
             if (user) {
                 return { valid: true, user };
             }
             return { valid: false };
         }
-        catch (error) {
+        catch {
             return { valid: false };
         }
     }

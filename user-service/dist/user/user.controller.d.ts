@@ -15,5 +15,8 @@ export declare class UserController {
     }>;
     verifyToken(data: {
         token: string;
-    }): Promise<any>;
+    }): Promise<{
+        valid: boolean;
+        user?: import("./user.entity").User;
+    }>;
 }

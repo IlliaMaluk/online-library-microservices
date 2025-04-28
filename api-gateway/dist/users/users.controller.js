@@ -22,10 +22,32 @@ let UsersController = class UsersController {
         this.userService = userService;
     }
     async registerUser(data) {
-        return (0, rxjs_1.firstValueFrom)(this.userService.send({ cmd: 'create_user' }, data));
+        try {
+            return await (0, rxjs_1.firstValueFrom)(this.userService.send({ cmd: 'create_user' }, data));
+        }
+        catch (err) {
+            const status = err?.statusCode || 500;
+            const errorText = status === 400
+                ? 'Bad Request'
+                : status === 401
+                    ? 'Unauthorized'
+                    : 'Internal Server Error';
+            throw new common_1.HttpException({ error: errorText, statusCode: status }, status);
+        }
     }
     async loginUser(data) {
-        return (0, rxjs_1.firstValueFrom)(this.userService.send({ cmd: 'login_user' }, data));
+        try {
+            return await (0, rxjs_1.firstValueFrom)(this.userService.send({ cmd: 'login_user' }, data));
+        }
+        catch (err) {
+            const status = err?.statusCode || 401;
+            const errorText = status === 400
+                ? 'Bad Request'
+                : status === 401
+                    ? 'Unauthorized'
+                    : 'Internal Server Error';
+            throw new common_1.HttpException({ error: errorText, statusCode: status }, status);
+        }
     }
 };
 exports.UsersController = UsersController;

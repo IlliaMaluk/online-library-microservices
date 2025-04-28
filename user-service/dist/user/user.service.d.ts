@@ -1,7 +1,7 @@
 import { Repository } from 'typeorm';
 import { User } from './user.entity';
 export declare class UserService {
-    private userRepository;
+    private readonly userRepository;
     constructor(userRepository: Repository<User>);
     createUser(data: {
         username: string;
@@ -14,5 +14,8 @@ export declare class UserService {
     }): Promise<{
         token: string;
     }>;
-    validateToken(token: string): Promise<any>;
+    validateToken(token: string): Promise<{
+        valid: boolean;
+        user?: User;
+    }>;
 }

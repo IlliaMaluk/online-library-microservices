@@ -25,6 +25,7 @@ services:
     ports:
       - "3000:3000"
     environment:
+      NODE_ENV: development
       DB_HOST: postgres
       DB_PORT: 5432
       DB_USER: postgres
@@ -40,6 +41,7 @@ services:
       context: ./user-service
       dockerfile: Dockerfile
     environment:
+      NODE_ENV: development
       DB_HOST: postgres
       DB_PORT: 5432
       DB_USER: postgres

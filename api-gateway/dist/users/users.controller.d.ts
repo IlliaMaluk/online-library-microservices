@@ -10,5 +10,7 @@ export declare class UsersController {
     loginUser(data: {
         username: string;
         password: string;
-    }): Promise<any>;
+    }): Promise<{
+        token: string;
+    }>;
 }
