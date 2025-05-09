@@ -27,7 +27,7 @@ exports.AppModule = AppModule = __decorate([
                 host: process.env.DB_HOST || 'postgres',
                 port: parseInt(process.env.DB_PORT || '5432', 10),
                 username: process.env.DB_USER || 'postgres',
-                password: process.env.DB_PASSWORD || 'postgres',
+                password: process.env.DB_PASSWORD || '1234',
                 database: process.env.DB_NAME || 'ebook_platform',
                 entities: [book_entity_1.Book],
                 synchronize: true,
