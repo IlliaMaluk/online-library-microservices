@@ -12,5 +12,4 @@ start cmd /k "cd reading-service && npm run start:dev"
 REM API Gateway
 start cmd /k "cd api-gateway && npm run start:dev"
 
-echo All services started in separate terminals.
 pause

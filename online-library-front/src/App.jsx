@@ -6,35 +6,54 @@ import Login from './components/Login.jsx';
 import Register from './components/Register.jsx';
 import AddBook from './components/AddBook.jsx';
 import { AuthProvider, AuthContext } from './context/AuthContext.jsx';
+import 'react-pdf/dist/Page/AnnotationLayer.css';
+import 'react-pdf/dist/Page/TextLayer.css';
+
 
 function AppRoutes() {
     const { user, logout } = useContext(AuthContext);
     return (
         <>
-            <nav className="bg-gray-100 p-3 flex justify-between">
-                <div className="flex gap-4">
-                    <Link to="/books" className="font-semibold">Книги</Link>
+            <nav className="bg-white shadow p-4 flex justify-between items-center">
+                <div className="flex gap-6">
+                    <Link to="/books" className="text-lg font-medium text-blue-600 hover:underline">
+                        📚 Книги
+                    </Link>
                 </div>
-                <div>
+                <div className="flex gap-4">
                     {user ? (
-                        <button onClick={logout} className="text-red-500">Вийти</button>
+                        <>
+                            <span className="text-gray-600">👤 {user.username}</span>
+                            <button
+                                onClick={logout}
+                                className="text-red-500 hover:underline"
+                            >
+                                Вийти
+                            </button>
+                        </>
                     ) : (
                         <>
-                            <Link to="/login" className="mr-4">Увійти</Link>
-                            <Link to="/register">Реєстрація</Link>
+                            <Link to="/login" className="text-blue-500 hover:underline">
+                                Увійти
+                            </Link>
+                            <Link to="/register" className="text-green-600 hover:underline">
+                                Реєстрація
+                            </Link>
                         </>
                     )}
                 </div>
             </nav>
 
-            <Routes>
-                <Route path="/" element={<Navigate to="/books" replace />} />
-                <Route path="/books" element={<BooksList />} />
-                <Route path="/books/:id" element={<BookReader />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/register" element={<Register />} />
-                <Route path="/add-book" element={<AddBook />} />
-            </Routes>
+            <main className="bg-gray-50 min-h-screen flex justify-center px-4">
+                <Routes>
+                    <Route path="/" element={<Navigate to="/books" replace />} />
+                    <Route path="/books" element={<BooksList />} />
+                    <Route path="/books/:id" element={<BookReader />} />
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/register" element={<Register />} />
+                    <Route path="/add-book" element={<AddBook />} />
+                </Routes>
+            </main>
         </>
     );
 }

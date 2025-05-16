@@ -4,64 +4,110 @@ import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 
 export default function AddBook() {
-    const [title, setTitle] = useState('');
-    const [author, setAuthor] = useState('');
-    const [genre, setGenre] = useState('');
-    const [description, setDescription] = useState('');
-    const [publicationYear, setPublicationYear] = useState('');
-    const [fileUrl, setFileUrl] = useState('');
+    const [form, setForm] = useState({
+        title: '',
+        author: '',
+        genre: '',
+        description: '',
+        publicationYear: '',
+        fileUrl: ''
+    });
+
     const navigate = useNavigate();
     const { user } = useContext(AuthContext);
 
-    if (!user || user.role !== 'admin') return <p>Немає доступу</p>;
+    if (!user || user.role !== 'admin') {
+        return (
+            <div className="flex items-center justify-center h-screen">
+                <p className="text-lg font-semibold text-red-600">Немає доступу</p>
+            </div>
+        );
+    }
+
+    const handleChange = e => {
+        setForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
+    };
 
     const handleSubmit = e => {
         e.preventDefault();
         axios.post('http://localhost:3000/books', {
-            title, author, genre, description,
-            publication_year: parseInt(publicationYear, 10),
-            file_url: fileUrl
+            title: form.title,
+            author: form.author,
+            genre: form.genre,
+            description: form.description,
+            publication_year: parseInt(form.publicationYear, 10),
+            file_url: form.fileUrl
         })
             .then(() => navigate('/books'))
             .catch(console.error);
     };
 
     return (
-        <div className="container mx-auto p-4 max-w-md">
-            <h2 className="text-xl font-bold mb-4">Додати книгу</h2>
-            <form onSubmit={handleSubmit} className="flex flex-col gap-3">
-                {['Title', 'Author', 'Genre', 'Description', 'Publication Year', 'File URL'].map((label, idx) => (
+        <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
+            <div className="bg-white p-6 rounded-lg shadow-md w-full max-w-md">
+                <h2 className="text-2xl font-bold text-center mb-6">Додати книгу</h2>
+                <form onSubmit={handleSubmit} className="space-y-4">
                     <input
-                        key={idx}
-                        type={label === 'Publication Year' ? 'number' : 'text'}
-                        placeholder={label}
-                        value={{
-                            'Title': title,
-                            'Author': author,
-                            'Genre': genre,
-                            'Description': description,
-                            'Publication Year': publicationYear,
-                            'File URL': fileUrl
-                        }[label]}
-                        onChange={e => {
-                            const val = e.target.value;
-                            switch(label) {
-                                case 'Title': setTitle(val); break;
-                                case 'Author': setAuthor(val); break;
-                                case 'Genre': setGenre(val); break;
-                                case 'Description': setDescription(val); break;
-                                case 'Publication Year': setPublicationYear(val); break;
-                                case 'File URL': setFileUrl(val); break;
-                            }
-                        }}
-                        className="border p-2 rounded"
+                        name="title"
+                        type="text"
+                        placeholder="Назва книги"
+                        value={form.title}
+                        onChange={handleChange}
+                        className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                         required
                     />
-                ))}
-                <button type="submit" className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
-                    Створити
-                </button>
-            </form>
+                    <input
+                        name="author"
+                        type="text"
+                        placeholder="Автор"
+                        value={form.author}
+                        onChange={handleChange}
+                        className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        required
+                    />
+                    <input
+                        name="genre"
+                        type="text"
+                        placeholder="Жанр"
+                        value={form.genre}
+                        onChange={handleChange}
+                        className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        required
+                    />
+                    <textarea
+                        name="description"
+                        placeholder="Опис"
+                        value={form.description}
+                        onChange={handleChange}
+                        className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        required
+                    />
+                    <input
+                        name="publicationYear"
+                        type="number"
+                        placeholder="Рік публікації"
+                        value={form.publicationYear}
+                        onChange={handleChange}
+                        className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        required
+                    />
+                    <input
+                        name="fileUrl"
+                        type="text"
+                        placeholder="URL PDF-файлу"
+                        value={form.fileUrl}
+                        onChange={handleChange}
+                        className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        required
+                    />
+                    <button
+                        type="submit"
+                        className="w-full py-2 px-4 bg-blue-600 text-white font-semibold rounded hover:bg-blue-700 transition"
+                    >
+                        Створити книгу
+                    </button>
+                </form>
+            </div>
         </div>
     );
 }

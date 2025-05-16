@@ -1,10 +1,8 @@
-// src/context/AuthContext.jsx
 import React, { createContext, useState, useEffect } from 'react';
 import axios from 'axios';
 
 export const AuthContext = createContext();
 
-// Функція для декодування JWT без сторонніх бібліотек
 function parseJwt(token) {
     try {
         const base64Url = token.split('.')[1];

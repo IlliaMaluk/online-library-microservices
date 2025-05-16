@@ -17,33 +17,35 @@ export default function Login() {
     };
 
     return (
-        <div className="container mx-auto p-4 max-w-sm">
-            <h2 className="text-xl font-bold mb-4">Увійти</h2>
-            {error && <p className="text-red-500">{error}</p>}
-            <form onSubmit={handleSubmit} className="flex flex-col gap-3">
-                <input
-                    type="text"
-                    placeholder="Username"
-                    value={username}
-                    onChange={e => setUsername(e.target.value)}
-                    className="border p-2 rounded"
-                    required
-                />
-                <input
-                    type="password"
-                    placeholder="Password"
-                    value={password}
-                    onChange={e => setPassword(e.target.value)}
-                    className="border p-2 rounded"
-                    required
-                />
-                <button
-                    type="submit"
-                    className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
-                >
-                    Увійти
-                </button>
-            </form>
+        <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
+            <div className="bg-white p-6 rounded-lg shadow-md w-full max-w-sm">
+                <h2 className="text-2xl font-bold text-center mb-4">Увійти</h2>
+                {error && <p className="text-red-500 text-center mb-2">{error}</p>}
+                <form onSubmit={handleSubmit} className="space-y-4">
+                    <input
+                        type="text"
+                        placeholder="Ім'я користувача"
+                        value={username}
+                        onChange={e => setUsername(e.target.value)}
+                        className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        required
+                    />
+                    <input
+                        type="password"
+                        placeholder="Пароль"
+                        value={password}
+                        onChange={e => setPassword(e.target.value)}
+                        className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        required
+                    />
+                    <button
+                        type="submit"
+                        className="w-full py-2 px-4 bg-blue-600 text-white font-semibold rounded hover:bg-blue-700 transition"
+                    >
+                        Увійти
+                    </button>
+                </form>
+            </div>
         </div>
     );
 }
