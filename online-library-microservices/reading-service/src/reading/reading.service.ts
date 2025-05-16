@@ -15,6 +15,17 @@ export class ReadingService {
   ) {}
 
   async create(dto: CreateReadingProgressDto): Promise<ReadingProgress> {
+    const existing = await this.repo.findOne({
+      where: {
+        user_id: dto.user_id,
+        book_id: dto.book_id,
+      }
+    });
+
+    if (existing) {
+      return existing;
+    }
+
     const reading = this.repo.create({
       ...dto,
       status: dto.percentage_read >= 100 ? 'completed' : 'in_progress',

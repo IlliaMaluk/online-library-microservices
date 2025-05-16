@@ -83,7 +83,7 @@ let BookService = class BookService {
         const writer = fs.createWriteStream(filePath);
         try {
             const response = await axios_1.default.get(url, { responseType: 'stream' });
-            console.log(`📦 Status: ${response.status} | Headers:`, response.headers);
+            console.log(`Status: ${response.status} | Headers:`, response.headers);
             return new Promise((resolve, reject) => {
                 response.data.pipe(writer);
                 writer.on('finish', () => {

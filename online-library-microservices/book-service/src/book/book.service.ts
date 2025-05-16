@@ -81,7 +81,7 @@ export class BookService {
         try {
             const response = await axios.get(url, { responseType: 'stream' });
 
-            console.log(`📦 Status: ${response.status} | Headers:`, response.headers);
+            console.log(`Status: ${response.status} | Headers:`, response.headers);
 
             return new Promise((resolve, reject) => {
                 response.data.pipe(writer);
