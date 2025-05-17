@@ -38,4 +38,9 @@ export class ReadingController {
     await this.readingService.delete(id);
     return { deleted: true };
   }
+
+  @EventPattern('reading.updated')
+  async handleReadingUpdated(@Payload() data: any) {
+    console.log('Received update reading.updated:', data);
+  }
 }
