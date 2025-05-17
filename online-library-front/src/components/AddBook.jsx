@@ -18,8 +18,8 @@ export default function AddBook() {
 
     if (!user || user.role !== 'admin') {
         return (
-            <div className="flex items-center justify-center h-screen">
-                <p className="text-lg font-semibold text-red-600">Немає доступу</p>
+            <div className="flex items-center justify-center min-h-screen px-4">
+                <p className="text-lg font-semibold text-red-600 text-center">Немає доступу</p>
             </div>
         );
     }
@@ -43,9 +43,9 @@ export default function AddBook() {
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
-            <div className="bg-white p-6 rounded-lg shadow-md w-full max-w-md">
-                <h2 className="text-2xl font-bold text-center mb-6">Додати книгу</h2>
+        <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4 sm:px-6">
+            <div className="bg-white p-4 sm:p-6 rounded-lg shadow-md w-full max-w-md">
+                <h2 className="text-xl sm:text-2xl font-bold text-center mb-6 text-gray-900">Додати книгу</h2>
                 <form onSubmit={handleSubmit} className="space-y-4">
                     <input
                         name="title"
@@ -53,7 +53,7 @@ export default function AddBook() {
                         placeholder="Назва книги"
                         value={form.title}
                         onChange={handleChange}
-                        className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
                         required
                     />
                     <input
@@ -62,7 +62,7 @@ export default function AddBook() {
                         placeholder="Автор"
                         value={form.author}
                         onChange={handleChange}
-                        className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
                         required
                     />
                     <input
@@ -71,7 +71,7 @@ export default function AddBook() {
                         placeholder="Жанр"
                         value={form.genre}
                         onChange={handleChange}
-                        className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
                         required
                     />
                     <textarea
@@ -79,7 +79,7 @@ export default function AddBook() {
                         placeholder="Опис"
                         value={form.description}
                         onChange={handleChange}
-                        className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
                         required
                     />
                     <input
@@ -88,7 +88,7 @@ export default function AddBook() {
                         placeholder="Рік публікації"
                         value={form.publicationYear}
                         onChange={handleChange}
-                        className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
                         required
                     />
                     <input
@@ -97,7 +97,7 @@ export default function AddBook() {
                         placeholder="URL PDF-файлу"
                         value={form.fileUrl}
                         onChange={handleChange}
-                        className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
                         required
                     />
                     <button

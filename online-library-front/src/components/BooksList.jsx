@@ -9,7 +9,7 @@ export default function BooksList() {
     const [genreFilter, setGenreFilter] = useState('');
     const [authorFilter, setAuthorFilter] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
-    const pageSize = 5;
+    const pageSize = 9;
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -56,52 +56,54 @@ export default function BooksList() {
     };
 
     return (
-        <div className="w-full max-w-screen-lg mx-auto p-6">
-            <div className="flex justify-between items-center mb-6">
-                <h1 className="text-3xl font-bold">Каталог книг</h1>
+        <div className="w-full max-w-screen-lg mx-auto p-4 sm:p-6">
+            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-6">
+                <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 text-center sm:text-left">
+                    Каталог книг
+                </h1>
                 {user?.role === 'admin' && (
                     <button
                         onClick={() => navigate('/add-book')}
-                        className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
+                        className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 w-full sm:w-auto"
                     >
                         + Додати книгу
                     </button>
                 )}
             </div>
 
-            <div className="flex gap-4 mb-6">
+            <div className="flex flex-col sm:flex-row gap-4 mb-6">
                 <input
                     type="text"
                     placeholder="Фільтр за жанром"
                     value={genreFilter}
                     onChange={e => { setGenreFilter(e.target.value); setCurrentPage(1); }}
-                    className="flex-1 p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full sm:flex-1 p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
                 />
                 <input
                     type="text"
                     placeholder="Фільтр за автором"
                     value={authorFilter}
                     onChange={e => { setAuthorFilter(e.target.value); setCurrentPage(1); }}
-                    className="flex-1 p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full sm:flex-1 p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
                 />
             </div>
 
             {paginated.length === 0 ? (
                 <p className="text-center text-gray-600">Нічого не знайдено.</p>
             ) : (
-                <ul className="space-y-6">
+                <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                     {paginated.map(book => (
-                        <li
+                        <div
                             key={book.id}
                             className="border rounded-lg p-4 shadow-sm hover:shadow-md transition"
                         >
-                            <h2 className="text-xl font-semibold mb-1">{book.title}</h2>
+                            <h2 className="text-xl font-semibold mb-1 text-gray-900">{book.title}</h2>
                             <p className="text-sm text-gray-700 mb-2">
                                 <strong>Автор:</strong> {book.author} <br />
                                 <strong>Жанр:</strong> {book.genre}
                             </p>
                             <p className="text-gray-600 mb-4">{book.description}</p>
-                            <div className="flex gap-3">
+                            <div className="flex flex-col sm:flex-row gap-3">
                                 <button
                                     onClick={() => navigate(`/books/${book.id}`)}
                                     className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
@@ -117,13 +119,13 @@ export default function BooksList() {
                                     </button>
                                 )}
                             </div>
-                        </li>
+                        </div>
                     ))}
-                </ul>
+                </div>
             )}
 
             {totalPages > 1 && (
-                <div className="flex justify-center gap-2 mt-8">
+                <div className="flex flex-wrap justify-center gap-2 mt-8">
                     <button
                         onClick={() => goToPage(currentPage - 1)}
                         disabled={currentPage === 1}

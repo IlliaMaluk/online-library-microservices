@@ -1,8 +1,10 @@
-import React, { useState, useEffect, useCallback, useMemo } from 'react';
+import React, {useState, useEffect, useCallback, useMemo, useContext, useRef} from 'react';
 import { Document, Page } from 'react-pdf';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { jwtDecode } from 'jwt-decode';
+import { BookContext } from '../context/BookContext';
+
 
 export default function BookReader() {
     const { id } = useParams();
@@ -13,6 +15,36 @@ export default function BookReader() {
     const [progress, setProgress] = useState(null);
     const [numPages, setNumPages] = useState(null);
     const [page, setPage] = useState(1);
+
+    const { setBookInfo } = useContext(BookContext);
+    const containerRef = useRef(null);
+    const [width, setWidth] = useState(0);
+
+    useEffect(() => {
+        const updateWidth = () => {
+            if (containerRef.current) {
+                setWidth(containerRef.current.offsetWidth);
+            }
+        };
+        updateWidth();
+        window.addEventListener('resize', updateWidth);
+        return () => window.removeEventListener('resize', updateWidth);
+    }, []);
+
+    useEffect(() => {
+        if (book && progress) {
+            setBookInfo({
+                title: book.title,
+                page,
+                numPages,
+                percentage: progress.percentage_read
+            });
+        }
+
+        return () => {
+            setBookInfo(null);
+        };
+    }, [book, page, progress]);
 
     useEffect(() => {
         if (!userId) return;
@@ -77,34 +109,36 @@ export default function BookReader() {
     if (!book) return <div className="text-center py-10 text-lg text-gray-600">Завантаження книги…</div>;
 
     return (
-        <div className="container mx-auto px-4 py-6">
-            <h1 className="text-3xl font-bold mb-2 text-center">{book.title}</h1>
-            <p className="text-center text-gray-700 mb-6">
-                Прочитано: <strong>{progress?.percentage_read ?? 0}%</strong> (сторінка {page} з {numPages ?? '…'})
-            </p>
-
-            <div className="flex justify-center gap-6 mb-6">
+        <div className="container mx-auto px-4 pt-2 pb-4">
+            <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mb-6 sm:flex-nowrap">
                 <button
                     onClick={() => goPage(-1)}
                     disabled={page <= 1}
-                    className="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300 disabled:opacity-50"
-                >← Назад</button>
+                    className="w-full sm:w-auto px-4 py-2 bg-gray-200 rounded hover:bg-gray-300 disabled:opacity-50">
+                    ← Назад
+                </button>
+
+                <div className="shadow-md overflow-auto w-full max-w-[90vw] sm:max-w-[600px] mx-auto" ref={containerRef}>
+                    <Document
+                        file={file}
+                        onLoadSuccess={({ numPages }) => setNumPages(numPages)}
+                        loading={<p>Завантаження PDF…</p>}
+                        error={<p>Не вдалося завантажити PDF.</p>}
+                    >
+                        <Page
+                            pageNumber={page}
+                            width={width}
+                        />
+                    </Document>
+                </div>
+
                 <button
                     onClick={() => goPage(1)}
                     disabled={numPages && page >= numPages}
-                    className="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300 disabled:opacity-50"
-                >Вперед →</button>
-            </div>
-
-            <div className="flex justify-center">
-                <Document
-                    file={file}
-                    onLoadSuccess={({ numPages }) => setNumPages(numPages)}
-                    loading={<p>Завантаження PDF…</p>}
-                    error={<p>Не вдалося завантажити PDF.</p>}
+                    className="w-full sm:w-auto px-4 py-2 bg-gray-200 rounded hover:bg-gray-300 disabled:opacity-50"
                 >
-                    <Page pageNumber={page} />
-                </Document>
+                    Вперед →
+                </button>
             </div>
         </div>
     );
