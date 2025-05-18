@@ -1,10 +1,16 @@
-import React, {useState, useEffect, useCallback, useMemo, useContext, useRef} from 'react';
+import React, {
+    useState,
+    useEffect,
+    useCallback,
+    useMemo,
+    useContext,
+    useRef
+} from 'react';
 import { Document, Page } from 'react-pdf';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { jwtDecode } from 'jwt-decode';
 import { BookContext } from '../context/BookContext';
-
 
 export default function BookReader() {
     const { id } = useParams();
@@ -40,35 +46,46 @@ export default function BookReader() {
                 percentage: progress.percentage_read
             });
         }
-
-        return () => {
-            setBookInfo(null);
-        };
-    }, [book, page, progress]);
+        return () => setBookInfo(null);
+    }, [book, page, progress, numPages, setBookInfo]);
 
     useEffect(() => {
-        if (!userId) return;
-
-        const loadBookAndProgress = async () => {
+        const fetchBook = async () => {
             try {
-                const bookRes = await axios.get(`http://localhost:3000/books/${id}`);
-                setBook(bookRes.data);
+                const { data } = await axios.get(`http://localhost:3000/books/${id}`);
+                setBook(data);
+            } catch (err) {
+                console.error('Помилка при завантаженні книги:', err);
+            }
+        };
+        fetchBook();
+    }, [id]);
 
-                const progressRes = await axios.get(`http://localhost:3000/reading-progress/${userId}`);
-                const allProgress = progressRes.data;
-                const existing = allProgress.find(r => r.book_id === id);
+    useEffect(() => {
+        if (!userId || !book) return;
 
+        const loadProgress = async () => {
+            try {
+                const { data: all } = await axios.get(
+                    `http://localhost:3000/reading-progress/${userId}`,
+                    { headers: { Authorization: `Bearer ${token}` } }
+                );
+                const existing = all.find(r => r.book_id === id);
                 if (existing) {
                     setProgress(existing);
                     setPage(existing.current_page);
                 } else {
-                    const createRes = await axios.post(`http://localhost:3000/reading-progress`, {
-                        user_id: userId,
-                        book_id: id,
-                        current_page: 1,
-                        percentage_read: 0
-                    });
-                    setProgress(createRes.data);
+                    const { data: created } = await axios.post(
+                        `http://localhost:3000/reading-progress`,
+                        {
+                            user_id: userId,
+                            book_id: id,
+                            current_page: 1,
+                            percentage_read: 0
+                        },
+                        { headers: { Authorization: `Bearer ${token}` } }
+                    );
+                    setProgress(created);
                     setPage(1);
                 }
             } catch (err) {
@@ -76,29 +93,47 @@ export default function BookReader() {
             }
         };
 
-        loadBookAndProgress();
-    }, [id, userId]);
+        loadProgress();
+    }, [id, userId, book, token]);
 
-    const saveProgress = useCallback((newPage, newPct) => {
-        if (!progress) return;
+    const saveProgress = useCallback(
+        (newPage, newPct) => {
+            if (!progress || !userId || newPage <= progress.current_page) return;
+            axios
+                .put(
+                    `http://localhost:3000/reading-progress/${progress.id}`,
+                    { current_page: newPage, percentage_read: newPct },
+                    { headers: { Authorization: `Bearer ${token}` } }
+                )
+                .then(({ data }) => setProgress(data))
+                .catch(console.error);
+        },
+        [progress, userId, token]
+    );
 
-        axios.put(`http://localhost:3000/reading-progress/${progress.id}`, {
-            current_page: newPage,
-            percentage_read: newPct
-        }).catch(console.error);
-    }, [progress]);
-
-    const goPage = (offset) => {
+    const goPage = offset => {
+        if (!numPages) return;
+        if (!userId) {
+            setPage(p => {
+                const nxt = p + offset;
+                return Math.min(Math.max(nxt, 1), numPages);
+            });
+            return;
+        }
         const next = page + offset;
         if (next < 1 || next > numPages) return;
-        const newPct = Math.round((next / numPages) * 100);
         setPage(next);
-        setProgress(p => ({ ...p, current_page: next, percentage_read: newPct }));
-        saveProgress(next, newPct);
+        if (next > (progress?.current_page || 0)) {
+            const newPct = Math.round((next / numPages) * 100);
+            saveProgress(next, newPct);
+        }
     };
 
+
     const file = useMemo(() => {
-        const isExternal = book?.file_url?.startsWith('http') && !book.file_url.includes('localhost:5173');
+        const isExternal =
+            book?.file_url?.startsWith('http') &&
+            !book.file_url.includes('localhost:5173');
         return {
             url: isExternal
                 ? `/pdf-proxy?url=${encodeURIComponent(book.file_url)}`
@@ -106,7 +141,12 @@ export default function BookReader() {
         };
     }, [book?.file_url]);
 
-    if (!book) return <div className="text-center py-10 text-lg text-gray-600">Завантаження книги…</div>;
+    if (!book)
+        return (
+            <div className="text-center py-10 text-lg text-gray-600">
+                Завантаження книги…
+            </div>
+        );
 
     return (
         <div className="container mx-auto px-4 pt-2 pb-4">
@@ -114,21 +154,22 @@ export default function BookReader() {
                 <button
                     onClick={() => goPage(-1)}
                     disabled={page <= 1}
-                    className="w-full sm:w-auto px-4 py-2 bg-gray-200 rounded hover:bg-gray-300 disabled:opacity-50">
+                    className="w-full sm:w-auto px-4 py-2 bg-gray-200 rounded hover:bg-gray-300 disabled:opacity-50"
+                >
                     ← Назад
                 </button>
 
-                <div className="shadow-md overflow-auto w-full max-w-[90vw] sm:max-w-[600px] mx-auto" ref={containerRef}>
+                <div
+                    className="shadow-md overflow-auto w-full max-w-[90vw] sm:max-w-[600px] mx-auto"
+                    ref={containerRef}
+                >
                     <Document
                         file={file}
                         onLoadSuccess={({ numPages }) => setNumPages(numPages)}
                         loading={<p>Завантаження PDF…</p>}
                         error={<p>Не вдалося завантажити PDF.</p>}
                     >
-                        <Page
-                            pageNumber={page}
-                            width={width}
-                        />
+                        <Page pageNumber={page} width={width} />
                     </Document>
                 </div>
 
@@ -140,6 +181,10 @@ export default function BookReader() {
                     Вперед →
                 </button>
             </div>
+
+                <p className="text-center mt-2 text-gray-700">
+                    Сторінка {page} з {numPages}
+                </p>
         </div>
     );
 }

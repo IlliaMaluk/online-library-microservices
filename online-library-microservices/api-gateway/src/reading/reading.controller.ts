@@ -1,7 +1,10 @@
-import { Controller, Get, Post, Put, Param, Body, Delete } from '@nestjs/common';
+import {Controller, Get, Post, Put, Param, Body, Delete, UseGuards} from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
 import { firstValueFrom } from 'rxjs';
+import {AuthGuard} from "../auth/auth.guard";
 
+
+@UseGuards(AuthGuard)
 @Controller('reading-progress')
 export class ReadingGatewayController {
   constructor(private readonly httpService: HttpService) {}

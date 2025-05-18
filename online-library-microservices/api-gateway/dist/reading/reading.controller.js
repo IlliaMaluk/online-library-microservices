@@ -16,6 +16,7 @@ exports.ReadingGatewayController = void 0;
 const common_1 = require("@nestjs/common");
 const axios_1 = require("@nestjs/axios");
 const rxjs_1 = require("rxjs");
+const auth_guard_1 = require("../auth/auth.guard");
 let ReadingGatewayController = class ReadingGatewayController {
     httpService;
     constructor(httpService) {
@@ -70,6 +71,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ReadingGatewayController.prototype, "delete", null);
 exports.ReadingGatewayController = ReadingGatewayController = __decorate([
+    (0, common_1.UseGuards)(auth_guard_1.AuthGuard),
     (0, common_1.Controller)('reading-progress'),
     __metadata("design:paramtypes", [axios_1.HttpService])
 ], ReadingGatewayController);
