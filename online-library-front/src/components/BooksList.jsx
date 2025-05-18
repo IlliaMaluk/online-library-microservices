@@ -115,7 +115,7 @@ export default function BooksList() {
                                         onClick={() => handleDelete(book.id)}
                                         className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
                                     >
-                                        🗑 Видалити
+                                         Видалити
                                     </button>
                                 )}
                             </div>
